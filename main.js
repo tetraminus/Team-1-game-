@@ -4,7 +4,7 @@ let config = {
   width: 600,
   height: 400,
   backgroundColor: 0x000000,
-  scene: [Scene1, Scene2],
+  scene: [playertest, Scene1, Scene2, Scene3, Scene4, Scene5, Scene6, Scene7, Scene8],
   parent: "phaser-div",
   dom: {
     createContainer: true

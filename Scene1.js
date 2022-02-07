@@ -3,34 +3,25 @@ class Scene1 extends SimpleScene {
     super("Scene1");
   }
 
-  init() {
-
-  }
 
   preload() {
+    this.load.tilemapCSV("Level1", "assets/Maps/MVP.csv");
+    this.load.imageset("myTileSet", "assets/Maps/tilemap.png", 21, 21, 0, 2);
 
   }
 
   create() {
-    // add text
+    this.loadMap();
     this.info = this.add.text(10, 10, "This is Scene1.js", 0xFFFFFF);
-    // add circle
-    this.circ = this.add.circle(100, 100, 20, 0x00FF00);
-    // add rectangle
-    this.square = this.add.rectangle(100, 200, 40, 40, 0x0000FF);
-
-    //enable click on square
-    this.square.enableClick();
-
-    // Uncomment line below to draw the grid
-    // this.drawGrid();
+    this.cameras.main.centerOn(50*21, 65*21)
   }
 
   update() {
-    // check if square was clicked
-    if (this.square.wasClicked()) {
-      // move circle to the right
-      this.circ.x += 10;
-    }
+
+  }
+  loadMap() {
+    let grid = this.add.gridLayout(0, 0, 32, 32, 21, 21);
+    grid.addTileset("myTileSet");
+    this.layer1 = grid.addTileLayer("Level1");
   }
 }
