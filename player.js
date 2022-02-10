@@ -1,6 +1,6 @@
 class Player{
   constructor(){
-    super("playertest");
+    super("Player");
   }
 }
 
@@ -10,31 +10,41 @@ class Player{
   }
    
   create() {
+    this.onFloor;
 
     this.player = this.add.rectangle(100, 150, 40, 40, 0xFF0000);
     this.player.enablePhysics(true);
-    
-    this.upKey = this.add.key("UP");
-    this.leftKey = this.add.key("LEFT");
-    this.rightKey = this.add.key("RIGHT");
 
+    this.cameras.main.startFollow(this.player);
 
-    this.physics.setGravity(600);}
+    this.player.setBoundsRectangle(0, 0, 600, 400);
+    this.a = this.add.key('A');
+    this.d = this.add.key('D');
+    this.w = this.add.key('W');
+    this.s = this.add.key('S');
 
-    update() {
-    let speed = 0;
+    this.left = this.add.key('LEFT');
+    this.right = this.add.key('RIGHT');
 
-    if(this.upKey.isPressed() && this.square1.isGrounded()) {
-      this.square1.setVelocityY(-400);
-    
-      
+  update() {
+ //check if Grounded
+    if (this.player.isGrounded()) {
+      this.onFloor = true;
     }
-    if(this.leftKey.isPressed()) {
-      speed -= 150;
-    if(this.rightKey.isPressed()) {
-      speed += 150;
+    else {
+      this.onFloor = false;
     }
-    this.player.setVelocityX(speed);
-
-    } 
-    
+    //Player movement
+    if (this.w.isPressed() || this.up.isPressed() && this.onFloor == true) {
+      this.player.setVelocityY(-35 * this.playspeed);
+    }
+    else if (this.d.isPressed() || this.right.isPressed()) {
+      this.player.setVelocityX(30 * this.playspeed);
+    }
+    else if (this.a.isPressed() || this.left.isPressed()) {
+      this.player.setVelocityX(-30 * this.playspeed);
+    }
+    else {
+      this.player.setVelocityX(0);
+    }
+  }

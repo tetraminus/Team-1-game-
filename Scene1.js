@@ -5,23 +5,25 @@ class Scene1 extends SimpleScene {
 
 
   preload() {
-    this.load.tilemapCSV("Level1", "assets/Maps/MVP.csv");
-    this.load.imageset("myTileSet", "assets/Maps/tilemap.png", 21, 21, 0, 2);
+    
 
   }
 
   create() {
-    this.loadMap();
-    this.info = this.add.text(10, 10, "This is Scene1.js", 0xFFFFFF);
-    this.cameras.main.centerOn(50*21, 65*21)
+    this.makePlats();
   }
 
   update() {
 
   }
-  loadMap() {
-    let grid = this.add.gridLayout(0, 0, 32, 32, 21, 21);
-    grid.addTileset("myTileSet");
-    this.layer1 = grid.addTileLayer("Level1");
+
+  makePlats() {
+    let platforms = [];
+    platforms.push(this.add.rectangle(500,300,100,20,"0xff00ff"));
+    platforms.push(this.add.rectangle(100,300,100,20,"0xff00ff"));
+    platforms.push(this.add.rectangle(300,200,100,20,"0xff00ff"));
+    platforms.push(this.add.rectangle(300,400,600,100,"0x0000ff"));
+
+
   }
 }
